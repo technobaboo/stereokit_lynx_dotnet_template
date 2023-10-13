@@ -1,4 +1,8 @@
-﻿using StereoKit;
+﻿using System.Collections.Generic;
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using StereoKit;
 
 namespace sk_cs_test;
 
@@ -6,7 +10,7 @@ class Program
 {
 	static void Main(string[] args)
 	{
-		// Backend.OpenXR.ExcludeExt("XR_MSFT_unbounded_reference_space");
+		Backend.OpenXR.ExcludeExt("XR_MSFT_unbounded_reference_space");
 		// Initialize StereoKit
 		SKSettings settings = new()
 		{
@@ -21,32 +25,34 @@ class Program
 			return;
 
 
+		// Get the PackageManager instance
+		// PackageManager packageManager = Application.Context.PackageManager;
+
+		// Get a list of all installed applications
+		// IList<PackageInfo> installedPackages = packageManager.GetInstalledPackages(0);
 
 		// Create assets used by the app
-		Pose cubePose = new(0, 0, -0.5f);
+		Pose appListPose = new(0, 0, -0.5f, Quat.FromAngles(0f, 180.0f, 0f));
 		Model cube = Model.FromMesh(
 			Mesh.GenerateRoundedCube(Vec3.One * 0.1f, 0.02f),
 			Material.UI);
 
-		Matrix floorTransform = Matrix.TS(0, -1.5f, 0, new Vec3(30, 0.1f, 30));
-		Material floorMaterial = new("floor.hlsl")
-		{
-			Transparency = Transparency.Blend
-		};
-
 		World.OcclusionEnabled = true;
-
-
-
 
 		// Core application loop
 		SK.Run(() =>
 		{
-			if (SK.System.displayType == Display.Opaque)
-				Mesh.Cube.Draw(floorMaterial, floorTransform);
+			UI.WindowBegin("Information", ref appListPose);
 
-			UI.Handle("Cube", ref cubePose, cube.Bounds);
-			cube.Draw(cubePose.ToMatrix());
+			UI.Label("Left Hand:" + (Input.Hand(Handed.Left).IsTracked ? "Tracked" : "Untracked"));
+			UI.Label("Right Hand:" + (Input.Hand(Handed.Right).IsTracked ? "Tracked" : "Untracked"));
+
+			// foreach (PackageInfo info in installedPackages)
+			// {
+			// 	UI.Label(info.PackageName ?? "Unknown");
+			// }
+
+			UI.WindowEnd();
 		});
 	}
 }
