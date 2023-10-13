@@ -44,8 +44,8 @@ class Program
 		{
 			UI.WindowBegin("Information", ref appListPose);
 
-			UI.Label("Left Hand:" + (Input.Hand(Handed.Left).IsTracked ? "Tracked" : "Untracked"));
-			UI.Label("Right Hand:" + (Input.Hand(Handed.Right).IsTracked ? "Tracked" : "Untracked"));
+			UI.Label("Left Hand:" + (Input.Hand(Handed.Left).IsTracked ? "Tracked" : "Untracked") + ", " + Input.HandSource(Handed.Left));
+			UI.Label("Right Hand:" + (Input.Hand(Handed.Right).IsTracked ? "Tracked" : "Untracked") + ", " + Input.HandSource(Handed.Right));
 
 			// foreach (PackageInfo info in installedPackages)
 			// {
