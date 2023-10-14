@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using Android.App;
-using Android.Content;
-using Android.Content.PM;
-using StereoKit;
+﻿using StereoKit;
 
 namespace sk_cs_test;
 
@@ -24,13 +20,6 @@ class Program
 		if (!SK.Initialize(settings))
 			return;
 
-
-		// Get the PackageManager instance
-		// PackageManager packageManager = Application.Context.PackageManager;
-
-		// Get a list of all installed applications
-		// IList<PackageInfo> installedPackages = packageManager.GetInstalledPackages(0);
-
 		// Create assets used by the app
 		Pose appListPose = new(0, 0, -0.5f, Quat.FromAngles(0f, 180.0f, 0f));
 		Model cube = Model.FromMesh(
@@ -47,10 +36,10 @@ class Program
 			UI.Label("Left Hand:" + (Input.Hand(Handed.Left).IsTracked ? "Tracked" : "Untracked") + ", " + Input.HandSource(Handed.Left));
 			UI.Label("Right Hand:" + (Input.Hand(Handed.Right).IsTracked ? "Tracked" : "Untracked") + ", " + Input.HandSource(Handed.Right));
 
-			// foreach (PackageInfo info in installedPackages)
-			// {
-			// 	UI.Label(info.PackageName ?? "Unknown");
-			// }
+			if (UI.Button("Exit"))
+			{
+				SK.Quit();
+			}
 
 			UI.WindowEnd();
 		});

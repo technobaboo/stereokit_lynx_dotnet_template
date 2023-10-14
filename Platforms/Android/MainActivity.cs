@@ -1,6 +1,7 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Views;
 using StereoKit;
 using System;
 using System.Reflection;
@@ -27,6 +28,7 @@ namespace sk_cs_test;
 [IntentFilter(new[] { Intent.ActionMain }, Categories = new[] { "org.khronos.openxr.intent.category.IMMERSIVE_HMD", "com.oculus.intent.category.VR", Intent.CategoryLauncher })]
 public class MainActivity : Activity
 {
+	protected LynxMenu menu = new();
 
 	protected override void OnCreate(Bundle savedInstanceState)
 	{
@@ -56,8 +58,10 @@ public class MainActivity : Activity
 		new Thread(InvokeStereoKit).Start();
 	}
 
-	static void InvokeStereoKit()
+	void InvokeStereoKit()
 	{
+		this.menu = SK.AddStepper<LynxMenu>();
+
 		Type entryClass = typeof(Program);
 		MethodInfo entryPoint = entryClass?.GetMethod("Main", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
 
@@ -80,6 +84,20 @@ public class MainActivity : Activity
 		else throw new Exception("Couldn't invoke Program.Main!");
 
 		Process.KillProcess(Process.MyPid());
+	}
+
+	public override bool DispatchKeyEvent(KeyEvent e)
+	{
+		if (e == null || e.KeyCode != Keycode.DpadCenter)
+		{
+			return false;
+		}
+		// if (e.Action != KeyEventActions.Up)
+		// {
+		// 	return false;
+		// }
+		menu.open = !menu.open;
+		return true;
 	}
 
 }
