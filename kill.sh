@@ -1,3 +1,3 @@
 #!/bin/sh
 
-adb shell am force-stop technobaboo.lynx_sk_test
+adb shell am force-stop technobaboo.stereokit_lynx_template
