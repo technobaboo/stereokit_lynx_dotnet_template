@@ -1,6 +1,7 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Runtime;
 using Android.Views;
 using StereoKit;
 using System;
@@ -86,16 +87,12 @@ public class MainActivity : Activity
 		Process.KillProcess(Process.MyPid());
 	}
 
-	public override bool DispatchKeyEvent(KeyEvent e)
+	public override bool OnKeyUp(Keycode keyCode, KeyEvent e)
 	{
 		if (e == null || e.KeyCode != Keycode.DpadCenter)
 		{
 			return false;
 		}
-		// if (e.Action != KeyEventActions.Up)
-		// {
-		// 	return false;
-		// }
 		menu.open = !menu.open;
 		return true;
 	}
