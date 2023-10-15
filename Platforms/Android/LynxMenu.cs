@@ -4,7 +4,7 @@ using Android.Content.PM;
 using StereoKit;
 using StereoKit.Framework;
 
-namespace sk_cs_test;
+namespace stereokit_lynx_template;
 
 public class LynxMenu : IStepper
 {

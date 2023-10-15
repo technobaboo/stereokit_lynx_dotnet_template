@@ -7,7 +7,7 @@ using System;
 using System.Reflection;
 using System.Threading;
 
-namespace sk_cs_test;
+namespace stereokit_lynx_template;
 
 // <activity
 // 	android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard|navigation|uiMode|density"

@@ -7,7 +7,7 @@
 		<ApplicationId>technobaboo.lynx_sk_test</ApplicationId>
 		<ApplicationVersion>1</ApplicationVersion>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<RootNamespace>sk_cs_test</RootNamespace>
+		<RootNamespace>stereokit_lynx_template</RootNamespace>
 		<ReadOnlyProject>true</ReadOnlyProject>
 
 		<SKOpenXRLoaderFolder>../../OpenXR</SKOpenXRLoaderFolder>

@@ -1,6 +1,6 @@
 ﻿using StereoKit;
 
-namespace sk_cs_test;
+namespace stereokit_lynx_template;
 
 class Program
 {
@@ -10,7 +10,7 @@ class Program
 		// Initialize StereoKit
 		SKSettings settings = new()
 		{
-			appName = "sk_cs_test",
+			appName = "stereokit_lynx_template",
 			assetsFolder = "Assets",
 			blendPreference = DisplayBlend.Blend,
 			// overlayApp = true,
