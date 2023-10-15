@@ -10,7 +10,7 @@ class Program
 		// Initialize StereoKit
 		SKSettings settings = new()
 		{
-			appName = "stereokit_lynx_template",
+			appName = "StereoKit Lynx Template",
 			assetsFolder = "Assets",
 			blendPreference = DisplayBlend.Blend,
 			// overlayApp = true,
