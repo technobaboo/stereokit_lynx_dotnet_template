@@ -21,24 +21,23 @@ class Program
 			return;
 
 		// Create assets used by the app
-		Pose appListPose = new(0, 0, -0.5f, Quat.FromAngles(0f, 180.0f, 0f));
-		Model cube = Model.FromMesh(
-			Mesh.GenerateRoundedCube(Vec3.One * 0.1f, 0.02f),
-			Material.UI);
+		Pose windowPose = new(0, 0, -0.5f, Quat.FromAngles(0f, 180.0f, 0f));
 
 		World.OcclusionEnabled = true;
 
 		// Core application loop
 		SK.Run(() =>
 		{
-			UI.WindowBegin("Information", ref appListPose);
+			UI.WindowBegin("Application", ref windowPose);
 
-			UI.Label("Left Hand:" + (Input.Hand(Handed.Left).IsTracked ? "Tracked" : "Untracked") + ", " + Input.HandSource(Handed.Left));
-			UI.Label("Right Hand:" + (Input.Hand(Handed.Right).IsTracked ? "Tracked" : "Untracked") + ", " + Input.HandSource(Handed.Right));
-
-			if (UI.Button("Exit"))
+			if (UI.Button("AR"))
 			{
-				SK.Quit();
+				Device.DisplayBlend = DisplayBlend.Blend;
+			}
+			UI.SameLine();
+			if (UI.Button("VR"))
+			{
+				Device.DisplayBlend = DisplayBlend.Opaque;
 			}
 
 			UI.WindowEnd();
