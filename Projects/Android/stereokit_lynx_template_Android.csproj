@@ -8,6 +8,7 @@
 		<ApplicationVersion>1</ApplicationVersion>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<RootNamespace>stereokit_lynx_template</RootNamespace>
+		<Nullable>enable</Nullable>
 		<ReadOnlyProject>true</ReadOnlyProject>
 
 		<SKOpenXRLoaderFolder>../../OpenXR</SKOpenXRLoaderFolder>
