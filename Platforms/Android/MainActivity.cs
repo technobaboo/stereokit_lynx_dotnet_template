@@ -31,7 +31,7 @@ public class MainActivity : Activity
 {
 	protected LynxMenu menu = new();
 
-	protected override void OnCreate(Bundle savedInstanceState)
+	protected override void OnCreate(Bundle? savedInstanceState)
 	{
 		base.OnCreate(savedInstanceState);
 		Run();
@@ -64,22 +64,22 @@ public class MainActivity : Activity
 		this.menu = SK.AddStepper<LynxMenu>();
 
 		Type entryClass = typeof(Program);
-		MethodInfo entryPoint = entryClass?.GetMethod("Main", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+		MethodInfo? entryPoint = entryClass?.GetMethod("Main", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
 
 		// There are a number of potential method signatures for Main, so
 		// we need to check each one, and give it the correct values.
 		//
 		// Converting MethodInfo into an Action instead of calling Invoke on
 		// it allows for exceptions to properly bubble up to the IDE.
-		ParameterInfo[] entryParams = entryPoint?.GetParameters();
+		ParameterInfo[]? entryParams = entryPoint?.GetParameters();
 		if (entryParams == null || entryParams.Length == 0)
 		{
-			Action Program_Main = (Action)Delegate.CreateDelegate(typeof(Action), entryPoint);
+			Action Program_Main = (Action)Delegate.CreateDelegate(typeof(Action), entryPoint!);
 			Program_Main();
 		}
 		else if (entryParams?.Length == 1 && entryParams[0].ParameterType == typeof(string[]))
 		{
-			Action<string[]> Program_Main = (Action<string[]>)Delegate.CreateDelegate(typeof(Action<string[]>), entryPoint);
+			Action<string[]> Program_Main = (Action<string[]>)Delegate.CreateDelegate(typeof(Action<string[]>), entryPoint!);
 			Program_Main(new string[] { });
 		}
 		else throw new Exception("Couldn't invoke Program.Main!");
@@ -87,13 +87,13 @@ public class MainActivity : Activity
 		Process.KillProcess(Process.MyPid());
 	}
 
-	public override bool OnKeyUp(Keycode keyCode, KeyEvent e)
+	public override bool OnKeyUp(Keycode keyCode, KeyEvent? e)
 	{
 		if (e == null || e.KeyCode != Keycode.DpadCenter)
 		{
 			return false;
 		}
-		menu.open = !menu.open;
+		menu.open = true;
 		return true;
 	}
 
