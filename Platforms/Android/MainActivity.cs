@@ -55,6 +55,8 @@ public class MainActivity : Activity
 		// loading may fail.
 		SK.AndroidActivity = this;
 
+		// Temporary fix for the broken reference space (qualcomm runtime issue)
+		Backend.OpenXR.ExcludeExt("XR_MSFT_unbounded_reference_space");
 		// Task.Run will eat exceptions, but Thread.Start doesn't seem to.
 		new Thread(InvokeStereoKit).Start();
 	}

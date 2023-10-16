@@ -6,7 +6,6 @@ class Program
 {
 	static void Main(string[] args)
 	{
-		Backend.OpenXR.ExcludeExt("XR_MSFT_unbounded_reference_space");
 		// Initialize StereoKit
 		SKSettings settings = new()
 		{
